@@ -24,13 +24,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     const li = document.createElement("li");
     li.textContent = inputValue;
-    const span = document.createElement("span");
-    span.textContent = "\u00d7";
-    li.appendChild(span);
+
+    // Create a button for cross
+    const crossButton = document.createElement("button");
+    crossButton.textContent = "\u00d7";
+
+    // Add event listener to remove the item when the button is clicked
+    crossButton.addEventListener("click", function () {
+      this.parentNode.remove();
+      saveData();
+    });
+
+    // Append the cross button to the list item
+    li.appendChild(crossButton);
+
+    // Append the list item to the list
     items.appendChild(li);
+
+    // Clear the input field
     input.value = "";
+
+    // Save the data
     saveData();
-  } 
+  }
 
   function toggleItem(item) {
     item.classList.toggle("checked");
